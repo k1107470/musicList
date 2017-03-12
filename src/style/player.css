@@ -1,0 +1,258 @@
+/*容器的基本设定*/
+.audioPlayer{
+	height: 40px;
+	/*2.5em*/
+	color: #fff;
+	border:1px solid #222;
+	position: relative;
+	z-index: 1;
+	background: -webkit-linear-gradient(top,#444,#222);
+	background: -moz-linear-gradient(top,#444,#222);
+	background: linear-gradient(top,#444,#222);
+	box-shadow:  inset 0 1px 0 rgba( 255, 255, 255, .15 ), 0 0 20px/*1.25em*/ rgba( 0, 0, 0, .5 );
+	border-radius: 2px;
+}
+.audioPlayer *,
+.audioPlayer *::before,
+.audioPlayer *::after {
+	transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+}
+.audioPlayer > div {
+	position: absolute;
+	display: block;
+}
+/*播放暂停按钮样式*/
+.audioPlayer > .playpause:hover,
+.audioPlayer > .playpause:focus {
+	background-color: #222;
+}
+.audioPlayer > .playpause {
+	width: 40px;
+	/*2.5em*/
+	height: 100%;
+	text-align: left;
+	text-indent: -9999px;
+	cursor: pointer;
+	z-index: 2;
+	top: 0;
+	left: 0;
+}
+/* 当不是播放状态下播放按钮a的样式 */
+.audioPlayer:not(.audioPlayer-playing) > .playpause > a {
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	/*0.5em*/
+	border-right: none;
+	border-left-color: #fff;
+	content:"";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -8px 0 0 -4px;
+	/*0.5em 0.25em*/
+}
+.audioPlayer > .playpause > a {
+	display: block;
+	cursor: pointer;
+}
+/* 播放状态下 总的容器添加audioPlayer-playing属性  变成暂停的样子*/
+.audioPlayer-playing > .playpause > a {
+	width: 12px/*0.75em*/;
+	height: 12px/*0.75em*/;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin:-6px/*0.375em*/ 0 0 -6px/*0.375em*/;
+}
+.audioPlayer-playing > .playpause  a:before,
+.audioPlayer-playing > .playpause  a:after{
+	width: 40%;
+	height: 100%;
+	background-color: #fff;
+	content: '';
+	position: absolute;
+	top: 0;
+}
+.audioPlayer-playing > .playpause  a:before{
+	left: 0;
+}
+.audioPlayer-playing > .playpause  a:after {
+	right: 0;
+}
+/* 时间样式 */
+.audioPlayer > .time {
+	width: 70px;
+	/*4.375em*/
+	height: 100%;
+	line-height: 38px;
+	/*2.375em*/
+	text-align: center;
+	z-index: 2;
+	top: 0;
+}
+/*当前进度的时间样式*/
+.audioPlayer > .time-current {
+	border-left: 1px solid #111;
+	border-left-color: rgba(0,0,0,.25);
+	left: 40px;
+	/*2.5em*/
+}
+/* 总时间样式 */
+.audioPlayer > .time-duration {
+	border-right: 1px solid #555;
+    border-right-color: rgba( 255, 255, 255, .1 );
+    right: 40px/*2.5em*/;
+}
+/* 进度条容器 */
+.audioPlayer > .bar {
+	box-shadow:  -1px -1px 0 rgba( 0, 0, 0, .5 ), 1px 1px 0 rgba( 255, 255, 255, .1 );
+	border-radius: 4px;
+	height: 14px;
+	/*0.875em*/
+	background-color: #222;
+	cursor: pointer;
+	z-index: 1;
+	top: 50%;
+	right: 110px;
+	/*6.875em*/
+	left: 110px/*6.875em*/;
+	margin-top: -7px /*-0.438em*/;
+}
+/*设置进度条内通用样式*/
+.audioPlayer > .bar > div {
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 6px;
+}
+/* 进度条底色 */
+.audioPlayer > .bar > .bar-load {
+	background-color: #333;
+	z-index: 1;
+}
+/*进度条渐变色*/
+.audioPlayer > .bar > .bar-played {
+	box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5 );
+	background: #007fd1;
+	background: linear-gradient( left, #007fd1, #c600ff );
+	background: -webkit-linear-gradient( left, #007fd1, #c600ff );
+	background: -moz-linear-gradient( left, #007fd1, #c600ff );
+}
+
+/* 声音按钮容器样式 */
+.audioPlayer > .volume:hover,
+.audioPlayer > .volume:focus {
+	background-color: #222;
+}
+.audioPlayer > .volume {
+	width: 40px/*2.5em*/;
+	height: 100%;
+	border-left: 1px solid #111;
+	border-left-color: rgba(0,0,0,.25);
+	text-align: left;
+	text-indent: -9999px;
+	cursor: pointer;
+	z-index: 2;
+	top: 0;
+	right:  0;
+}
+/* 声音按钮样式 */
+.audioPlayer > .volume > .volume-button {
+	width: 100%;
+	height: 100%;
+}
+/* 声音按钮中a样式，喇叭 */
+.volume-button a {
+	width: 5px/*0.313em*/;
+    height: 6px/*0.375em*/;
+    background-color: #fff;
+    display: block;
+    position: relative;
+    z-index: 1;
+    top: 40%;
+    left: 35%;
+}
+.volume-button a::before,
+.volume-button a::after {
+	content: "";
+	position: absolute;
+}
+.volume-button a::before {
+    width: 0;
+    height: 0;
+    border: 8px/*0.5em*/ solid transparent;
+    border-left: none;
+    border-right-color: #fff;
+    z-index: 2;
+    top: 50%;
+    right: -4px/*-0.25em*/;
+    margin-top: -8px/* -0.5em */;
+}
+/*当不是静音状态下（button上有off类）*/
+.volume-button:not(.off) a::after {/*声音的2条弧线*/
+	width: /*0.313em*/5px;
+    height: /*0.313em*/5px;
+	border-style: double;
+	border-color: #fff;
+    border-width: 4px/*0.25em*/ 4px/*0.25em*/ 0 0;
+    left: 10px/*0.625em*/;
+    top: 0;
+    transform: rotate(45deg);
+}
+/*当悬浮在声音的div上，top=auto覆盖
+声音条块原有的top=-99999px，使得其出现页面上*/
+.volume:hover .volume-adjust{
+	top: auto;
+	bottom: 100%;
+}
+/*默认状态下top值-99999px使得声音条块‘隐藏’*/
+.volume > .volume-adjust {
+	box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15 ),
+	 2px -2px 2px rgba( 0, 0, 0, .15 );
+	 position: absolute;
+	 height: 100px/*6.25em*/;
+	 cursor: default;
+	 top: -99999px;
+	 left: 0;
+	 right: 0;
+	 background: -webkit-linear-gradient( top, #444, #222 );
+	 background: -moz-linear-gradient( top, #444, #222 );
+	 background: linear-gradient( top, #444, #222 );
+	 border-radius: 2px 2px 0 0 ;
+}
+/*声音条块中的盒子*/
+.volume > .volume-adjust > .volume-total {
+	width: 40%;
+	height: 80%;
+	background-color: #222;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	margin: 30% auto 0 ;
+	border-radius: 4px;
+}
+.volume > .volume-adjust > .volume-total > .volume-max {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	background-color: transparent;
+	z-index: 2;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.volume > .volume-adjust > .volume-total > .volume-value {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	border-radius: 4px;
+	background: #007fd1;
+	background: linear-gradient( bottom, #007fd1, #c600ff );
+	background: -webkit-linear-gradient( bottom, #007fd1, #c600ff );
+	background: -moz-linear-gradient( bottom, #007fd1, #c600ff );
+}
