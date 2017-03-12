@@ -33,5 +33,7 @@
             };
         });
 
-
+    myApp.config(['$locationProvider',function($locationProvider){
+        $locationProvider.hashPrefix('');
+    }]);
 })(angular);

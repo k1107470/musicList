@@ -48,7 +48,7 @@ Player.prototype = {
         player += '     <div class="time time-duration">00:00</div>';
         player += '     <div class="volume">';
         player += '          <div class="volume-button" title="声音">';
-        player += '          <a href="#"></a>';
+        player += '          <a></a>';
         player += '          </div>';
         player += '          <div class="volume-adjust">';
         player += '              <div class="volume-total">';
@@ -95,6 +95,10 @@ Player.prototype = {
     _updateCurrentTime: function () {
         document.querySelector(".time-current").innerHTML = this._getTime(this.audio.currentTime);
     },
+    //通过参数获得改变总时长
+    updataTimeBy:function(duration){
+        document.querySelector(".time-duration").innerHTML = this._getTime(duration);
+    },
     //更新进度条
     _updateProgress: function () {
         //获取当前进度的百分数
@@ -114,6 +118,8 @@ Player.prototype = {
             else if (that.audio.currentTime < that.audio.duration) {
                 that._updateCurrentTime();
                 that._updateProgress();
+            } else if (that.audio.currentTime == that.audio.duration){
+                //播放结束 归零 可以播放状态
             }
         }, 200);
     },
@@ -217,6 +223,7 @@ Player.prototype = {
         });
         //音量条点击事件
         this.on('.volume-max', 'click', function (e) {
+            console.log(12345);
             var player, y, H, per;
             player = that.audio;
             //获取相对y坐标
@@ -224,9 +231,10 @@ Player.prototype = {
             //默认样式height为80%父盒子高度
             H = document.querySelector('.volume-adjust').offsetHeight * 0.8;
             //y的值越大，声音越小
-            per = (H - y) / H;
-            // console.log(y);
-            // console.log(H);
+             console.log(y);
+             console.log(H);
+            per = Math.abs(H - y) / H;
+
             // 设置了volume和音量条高度的双向绑定
             that.volume = per;
             //改变媒体音量

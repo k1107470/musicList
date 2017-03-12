@@ -5,15 +5,16 @@
         <div class="col-sm-offset-1 col-sm-1 col-md-1 sidebar">
             <ul class="nav nav-sidebar">
                 <li><h4>&nbsp;&nbsp;音乐榜</h4></li>
-                <li><a href="#">音乐榜:新歌</a></li>
-                <li><a href="#">音乐榜:热歌</a></li>
-                <li><a href="#">音乐榜:流行</a></li>
-                <li><a href="#">音乐榜:内地</a></li>
-                <li><a href="#">音乐榜:港台</a></li>
-                <li><a href="#">音乐榜:欧美</a></li>
-                <li><a href="#">音乐榜:日本</a></li>
-                <li><a href="#">音乐榜:韩国</a></li>
-                <li><a href="#">音乐榜:k歌金曲</a></li>
+                <li><a href="#/music/tabs/27">音乐榜:新歌</a></li>
+                <li><a href="#/music/tabs/26">音乐榜:热歌</a></li>
+                <li><a href="#/music/tabs/4">音乐榜:流行</a></li>
+                <li><a href="#/music/tabs/5">音乐榜:内地</a></li>
+                <li><a href="#/music/tabs/6">音乐榜:港台</a></li>
+                <li><a href="#/music/tabs/3">音乐榜:欧美</a></li>
+                <li><a href="#/music/tabs/17">音乐榜:日本</a></li>
+                <li><a href="#/music/tabs/16">音乐榜:韩国</a></li>
+                <li><a href="#/music/tabs/36">音乐榜:k歌金曲</a></li>
+                <li><a href="#/music/tabs/28">音乐榜:网络歌曲</a></li>
             </ul>
 
         </div>
@@ -36,21 +37,22 @@
                     </tr>
                     </thead>
                     <tbody >
-                    <tr ng-repeat="">
+                    <tr ng-repeat="item in list">
                         <td>{{$index+1}}</td>
                         <td>
-                            <img ng-if="$index < 3" ng-src="{{}}" alt="海报" width="50" height="50">
-                            <a href="#" class="music_title">{{}}</a>
-                            <span class="play-icon icon-play-circled" title="播放"></span></td>
-                        <td>{{300*1000|date:'mm:ss'}}</td>
-                        <td  title="{{}}">{{asdfzxc|cut:true:5:'...'}}</td>
+                            <img ng-if="$index < 3" ng-src="{{item.albumpic_small}}" alt="海报" width="50" height="50">
+                            <a href="#" class="music_title">{{item.songname}}</a>
+                            <span class="play-icon icon-play-circled" title="播放" ng-click="playItem(item)"></span>
+                        </td>
+                        <td>{{item.seconds*1000|date:'mm:ss'}}</td>
+                        <td title="{{item.singername}}">{{item.singername|cut:true:5:'...'}}</td>
                     </tr>
 
                     </tbody>
                 </table>
             </div>
         </div>
-        <!--<ui-view></ui-view>-->
+
     </div>
 </div>
 
