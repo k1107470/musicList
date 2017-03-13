@@ -1,0 +1,30 @@
+<div class="col-sm-9 col-sm-offset-1 col-md-9 col-md-offset-1 main">
+    <h1 class="page-header">新歌榜</h1>
+    <div id="musicTable" class="table-responsive">
+        <h3 class="sub-header">Section title</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 10%"></th>
+                <th style="width: 70%">标题</th>
+                <th style="width: 10%">时长</th>
+                <th style="width: 10%">歌手</th>
+
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="item in list">
+                <td>{{$index+1}}</td>
+                <td>
+                    <img ng-if="$index < 3" ng-src="{{item.albumpic_small}}" alt="海报" width="50" height="50">
+                    <a href="#" class="music_title">{{item.songname}}</a>
+                    <span class="play-icon icon-play-circled" title="播放" ng-click="playItem(item)"></span>
+                </td>
+                <td>{{item.seconds*1000|date:'mm:ss'}}</td>
+                <td title="{{item.singername}}">{{item.singername|cut:true:5:'...'}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
