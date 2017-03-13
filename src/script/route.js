@@ -32,7 +32,7 @@
 
                     })
                     .state('music.tabs.search',{
-                        url:'/search',
+                        url:'/search/:p/:keyword',
                         controller:'SearchListController',
                         templateUrl:'templates/searchList.html'
 

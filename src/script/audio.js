@@ -10,6 +10,7 @@
                 container: '.playerContainer',
                 audio: '#myPlayer'
             });
+            //点击项的播放图标触发播放事件
             $scope.playItem = function(item){
                 $scope.player.audio.src = item.url;
                 $scope.player.audio.load();

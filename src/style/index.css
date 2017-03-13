@@ -153,10 +153,6 @@ body {
 }
 #musicTable  .table{
     border: 1px solid #ddd;
-    /*表格中不换行，超出隐藏，文本超出省略号*/
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 #musicTable  .table tr  {
 
@@ -177,4 +173,12 @@ body {
 #musicTable  .table  .play-icon {
     font-size:20px;
     cursor: pointer;
+}
+
+/*返回顶部的按钮*/
+#toTop{
+    font-size: 25px;
+    position: fixed;
+    right:10%;
+    bottom:10%;
 }

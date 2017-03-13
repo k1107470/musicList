@@ -183,7 +183,10 @@ Player.prototype = {
                 // console.log(document.querySelector('.bar').offsetWidth);
                 // 获取鼠标点击的相对x坐标计算百分比
                 var x, W, per, playTime;
-                x = e.layerX;
+                //console.log(e.layerX);
+                //console.log(e.offsetX);
+                //x = e.layerX;
+                x = e.offsetX;
                 W = document.querySelector('.bar').offsetWidth;
                 per = x / W;
                 playTime = parseInt(player.duration * per);
@@ -227,12 +230,13 @@ Player.prototype = {
             var player, y, H, per;
             player = that.audio;
             //获取相对y坐标
-            y = e.layerY;
+            console.log(e.layerY);
+            console.log(e.offsetY);
+            //y = e.layerY; ==>改变滚动条高度会相对于原先位置的y值
+            y = e.offsetY;
             //默认样式height为80%父盒子高度
             H = document.querySelector('.volume-adjust').offsetHeight * 0.8;
             //y的值越大，声音越小
-             console.log(y);
-             console.log(H);
             per = Math.abs(H - y) / H;
 
             // 设置了volume和音量条高度的双向绑定

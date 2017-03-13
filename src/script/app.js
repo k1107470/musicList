@@ -36,23 +36,11 @@
     myApp.config(['$locationProvider',function($locationProvider){
         $locationProvider.hashPrefix('');
     }]);
-    myApp.controller('AppController',['$scope',function($scope){
-        /*实例化一个播放器组件*/
-        $scope.player  = new Player({
-            container: '.playerContainer',
-            audio: '#myPlayer'
-        });
-        $scope.playItem = function(item){
-            $scope.player.audio.src = item.url;
-            $scope.player.audio.load();
-            $scope.player._playPause();
-            $scope.player.updataTimeBy(item.seconds);
-            $scope.player._update();
-            //console.log(player.audio.duration);
-
-            //$scope.playAddress = $sce.trustAsResourceUrl($scope.playAddress);
-            //
-
-        };
+    myApp.controller('AppController',['$scope','$location',function($scope,$location){
+        $scope.keyword = '';
+        $scope.search = function(){
+            //console.log($scope.keyword);
+            $location.url('/music/tabs/search/1/'+ $scope.keyword)
+        }
     }])
 })(angular);
