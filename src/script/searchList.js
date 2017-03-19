@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/3/13.
  */
-(function(){
+(function(angular){
     'use strict';
     angular.module('app.searchList',['app.service'])
         .controller('SearchListController',[
@@ -17,4 +17,4 @@
                 $scope.search = res.data.showapi_res_body.pagebean.contentlist;
             })
         }])
-})();
+})(angular);

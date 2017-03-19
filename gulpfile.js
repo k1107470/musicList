@@ -1,13 +1,16 @@
 'use strict';
 
 var gulp = require('gulp');
-//1.第三方库的移动,模板移动
+//1.第三方库的移动,模板移动,字体的移动
 gulp.task('move',function(){
-    gulp.src('src/lib/**/*')
+    gulp.src(['src/lib/**/*.css','src/lib/**/*.js'])
                .pipe(gulp.dest('dist/lib/'))
                .pipe(browserSync.stream());
     gulp.src('src/templates/*')
         .pipe(gulp.dest('dist/templates/'))
+        .pipe(browserSync.stream());
+    gulp.src('src/font/*')
+        .pipe(gulp.dest('dist/font/'))
         .pipe(browserSync.stream());
 });
 

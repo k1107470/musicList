@@ -15,41 +15,31 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="AppController">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">
+
+            <a class="navbar-brand" href="#/music/home">
                音乐
             </a>
+
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/music/home">主页</a></li>
-                <li><a href="#/music/tabs/list/27">榜单</a></li>
-            </ul>
-            <form class="navbar-form navbar-right" ng-submit="search()">
-                <input type="text" class="form-control" placeholder="搜索..." ng-model="keyword">
-            </form>
-        </div>
+        <form  ng-submit="search()">
+            <input type="text" class="form-control" placeholder="搜索..." ng-model="keyword">
+        </form>
     </div>
 </nav>
 <!--头部结束-->
-<a href="javascript:scrollTo(0,0);" id="toTop" class="btn btn-default" ><span class="icon-up"></span></a>
+<a href="javascript:scrollTo(0,0);" id="toTop" class="btn btn-default visible-lg" ><span class="icon-up-open"></span></a>
 <ui-view></ui-view>
 
 
 
-
+<!--第三方库-->
 <!--<script src="./lib/jquery/dist/jquery.min.js"></script>-->
 <!--<script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>-->
 <script src="./lib/angular/angular.js"></script>
 <script src="./lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-
-<!-- <script src="./script/index.js"></script> -->
+<!--自定义的模块和脚本，gulp压缩合并混淆后只引用index.js-->
+ <!--<script src="./script/index.js"></script>-->
 <script src="./script/app.js"></script>
 <script src="./script/route.js"></script>
 <script src="./script/songList.js"></script>
@@ -58,22 +48,10 @@
 <script src="./script/audio.js"></script>
 <script src="./script/service.js"></script>
 <script src="./script/config.js"></script>
-
-
 <script src="./script/player.js"></script>
 <script>
     (function(window){
-        /*控制小屏幕下的导航栏的菜单按钮*/
-        var collapse = document.querySelector('.navbar-fixed-top .navbar-toggle');
-        var navbar = document.getElementById('navbar');
-        collapse.addEventListener('click',function(){
 
-            if(navbar.className == 'navbar-collapse'){
-                navbar.className = 'navbar-collapse collapse';
-            }else {
-                navbar.className = 'navbar-collapse';
-            }
-        });
         //返回顶部按钮显示隐藏
 
         var toTop = document.getElementById('toTop');

@@ -40,7 +40,7 @@
         $scope.keyword = '';
         $scope.search = function(){
             //console.log($scope.keyword);
-            $location.url('/music/tabs/search/1/'+ $scope.keyword)
+            $location.url('/music/search/1/'+ $scope.keyword)
         }
     }])
 })(angular);

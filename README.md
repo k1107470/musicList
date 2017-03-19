@@ -14,9 +14,13 @@
             |--style（less文件）
             |--images（图片）
             |--index.html
-        |--node_modules(npm配置文件)
+            |--font(字体图标)
+        |--node_modules(npm配置文件,开发依赖)
+        |--.bowercc(bower安装第三方库的位置)
         |--.gitignore(git追踪忽略列表)
+        |--bower.json(bower配置)
         |--gulpfile.js（gulp功能文件）
+        |--package.json(npm配置)
         |--README.md
 
 ##使用方法    
@@ -27,4 +31,4 @@
     ```
     -命令行中启动 gulp server服务
     -进行开发
-        开发过程中每当保存文件（html，js，less，图片），browsersync sevrer就会同步刷新到网页上
+        开发过程中每当保存文件（html，js，less，图片），browsersync-sevrer就会同步刷新到网页上
