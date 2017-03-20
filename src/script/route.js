@@ -32,13 +32,13 @@
 
                     })
                     .state('music.tabs.search',{
-                        url:'/search/:p/:keyword',
+                        url:'/search/{page:int}/:keyword',
                         controller:'SearchListController',
                         templateUrl:'templates/searchList.html'
 
                     })
                     .state('music.tabs.details',{
-                        url:'/details',
+                        url:'/details/{songid}/{singer}/{albummid}',
                         controller:'DetailsController',
                         templateUrl:'templates/details.html'
 

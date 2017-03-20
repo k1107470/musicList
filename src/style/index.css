@@ -24,10 +24,38 @@ body {
 .navbar-fixed-top form {
     position: fixed;
     top:0;
-    right:15px;
+    right:20px;
     margin-top: 8px;
 }
-
+.navbar-fixed-top .collapse-btn{
+    position: fixed;
+    top:0;
+    right:0;
+    width:15px;
+    height:50px;
+    padding-top:5px;
+    cursor: pointer;
+}
+.navbar-fixed-top .collapse-btn span {
+    display: block;
+    margin:9px 5px 0;
+    border:1px solid #fff;
+    width:5px;
+}
+.navbar-fixed-top .lists{
+    position: absolute;
+    width:100%;
+    background-color: rgba(51,51,51,.5);
+}
+.navbar-fixed-top .lists a {
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.navbar-fixed-top .lists a:hover{
+    color: #000;
+}
 /*
  * Sidebar
  */
@@ -343,13 +371,13 @@ body {
         font-size: 1em;
     }
     .th_seconds,.td_seconds{
-        width:10%;
+        width:15%;
     }
     .th_singer,.td_singer{
         width: 20%;
     }
     .th_title,.td_title{
-        width: 60%;
+        width: 55%;
     }
     #myTable .tbody .td_title a,
     #myTable .tbody:hover .td_title a{
@@ -365,8 +393,10 @@ body {
         bottom:-48px;
         transition: bottom 1s ;
     }
+
     .navbar:hover #playerContainer{
         bottom:5px;
         transition: bottom 1s ;
     }
+
 }

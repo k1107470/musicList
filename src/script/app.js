@@ -36,11 +36,17 @@
     myApp.config(['$locationProvider',function($locationProvider){
         $locationProvider.hashPrefix('');
     }]);
-    myApp.controller('AppController',['$scope','$location',function($scope,$location){
+    myApp.controller('AppController',['$scope','$state',function($scope,$state){
         $scope.keyword = '';
+        $scope.show_flag = false;
         $scope.search = function(){
+            if($scope.keyword.replace(/(^\s*)|(\s*$)/g, '') == ''){
+                return;
+            }
             //console.log($scope.keyword);
-            $location.url('/music/search/1/'+ $scope.keyword)
-        }
+            $state.go('music.tabs.search',{page:1,keyword:$scope.keyword});
+            //$location.url('/music/tabs/search/1/'+ $scope.keyword);
+        };
+
     }])
 })(angular);

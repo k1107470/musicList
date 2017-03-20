@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,20 +16,32 @@
     <div class="container-fluid">
         <div class="navbar-header">
 
-            <a class="navbar-brand" href="#/music/home">
-               音乐
+            <a class="navbar-brand" ui-sref="music.home">
+                音乐
             </a>
 
         </div>
-        <form  ng-submit="search()">
+        <form ng-submit="search()">
             <input type="text" class="form-control" placeholder="搜索..." ng-model="keyword">
         </form>
+        <div class="collapse-btn" ng-click="showOrHide()"><span></span><span></span><span></span></div>
+    </div>
+    <div class="lists container-fluid " ng-show="show_flag">
+        <a ui-sref="music.tabs.list({id:27})" class="col-md-1 col-sm-2 col-xs-3">新歌</a>
+        <a ui-sref="music.tabs.list({id:26})" class="col-md-1 col-sm-2 col-xs-3">热歌</a>
+        <a ui-sref="music.tabs.list({id:4})" class="col-md-1 col-sm-2 col-xs-3">流行</a>
+        <a ui-sref="music.tabs.list({id:5})" class="col-md-1 col-sm-2 col-xs-3">内地</a>
+        <a ui-sref="music.tabs.list({id:6})" class="col-md-1 col-sm-2 col-xs-3">港台</a>
+        <a ui-sref="music.tabs.list({id:3})" class="col-md-1 col-sm-2 col-xs-3">欧美</a>
+        <a ui-sref="music.tabs.list({id:17})" class="col-md-1 col-sm-2 col-xs-3">日本</a>
+        <a ui-sref="music.tabs.list({id:16})" class="col-md-1 col-sm-2 col-xs-3">韩国</a>
+        <a ui-sref="music.tabs.list({id:36})" class="col-md-1 col-sm-2 col-xs-4">k歌金曲</a>
+        <a ui-sref="music.tabs.list({id:28})" class="col-md-2 col-sm-2 col-xs-4 col-xs-offset-2 col-sm-offset-2">网络歌曲</a>
     </div>
 </nav>
 <!--头部结束-->
-<a href="javascript:scrollTo(0,0);" id="toTop" class="btn btn-default visible-lg" ><span class="icon-up-open"></span></a>
+<a href="javascript:scrollTo(0,0);" id="toTop" class="btn btn-default visible-lg"><span class="icon-up-open"></span></a>
 <ui-view></ui-view>
-
 
 
 <!--第三方库-->
@@ -39,7 +51,7 @@
 <script src="./lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 <!--自定义的模块和脚本，gulp压缩合并混淆后只引用index.js-->
- <!--<script src="./script/index.js"></script>-->
+<!--<script src="./script/index.js"></script>-->
 <script src="./script/app.js"></script>
 <script src="./script/route.js"></script>
 <script src="./script/songList.js"></script>
@@ -50,17 +62,19 @@
 <script src="./script/config.js"></script>
 <script src="./script/player.js"></script>
 <script>
-    (function(window){
+    (function (window) {
 
         //返回顶部按钮显示隐藏
+//        var collapse_btn = document.getElementById('collapse_btn');
+
 
         var toTop = document.getElementById('toTop');
-        window.onscroll = function(){
+        window.onscroll = function () {
             var scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
 //            console.log(scrollTop);
-            if(scrollTop > 100){
+            if (scrollTop > 100) {
                 toTop.className = 'btn btn-default';
-            }else {
+            } else {
                 toTop.className = 'btn btn-default hidden';
             }
         };
