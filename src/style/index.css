@@ -472,6 +472,7 @@ body {
 #details .content-body #desc{
     overflow:hidden;
     white-space:nowrap;
+    text-overflow: ellipsis;
     margin-bottom: 10px;
 }
 #details .content-body #desc.open {
@@ -508,8 +509,7 @@ body {
 
 }
 #homepage .panels ul li {
-    width: 80%;
-
+    padding:15px;
 }
 
 #homepage .panels .head {
@@ -519,12 +519,15 @@ body {
     color: #000;
 
 }
-#homepage .panels ul li span {
+#homepage .panels ul li .play {
     font-size:20px;
     line-height:20px;
     cursor: pointer;
     display: none;
     color: #fff;
+    position: absolute;
+    top: 30px;
+    right: 15px;
 }
 #homepage .panels ul li:not(.head):hover{
     background-color: rgba(50,50,50,.5) ;
@@ -538,10 +541,16 @@ body {
     text-overflow: ellipsis;
     font-size: 16px;
     line-height:16px;
+    position: relative;
+    top:0.5em;
+    padding-left:10px;
+}
+#homepage .panels ul li:not(.head) a span {
+    display: block;
 }
 #homepage .panels ul li:not(.head):hover a{
     width:70%;
 }
-#homepage .panels ul li:hover span {
+#homepage .panels ul li:hover .play {
     display: block;
 }

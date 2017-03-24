@@ -23,8 +23,10 @@
                 新歌榜 <a ui-sref="music.tabs.list({id:27})" class="pull-right">更多</a>
             </li>
             <li  class="list-group-item" ng-repeat="item in list_27" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()">{{ item.songname}}</a>
-                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
+                    <span class="signer" >{{item.singername}}</span>
+                </a>
+                <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
 
         </ul>
@@ -34,8 +36,10 @@
                 热歌榜 <a ui-sref="music.tabs.list({id:26})" class="pull-right">更多</a>
             </li>
             <li  class="list-group-item" ng-repeat="item in list_26" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()">{{ item.songname}}</a>
-                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
+                    <span class="signer" >{{item.singername}}</span>
+                </a>
+                <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
 
         </ul>
@@ -45,8 +49,10 @@
                 流行榜 <a ui-sref="music.tabs.list({id:4})" class="pull-right">更多</a>
             </li>
             <li  class="list-group-item" ng-repeat="item in list_4" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1 }}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()"> {{item.songname}}</a>
-                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}"> {{item.songname}}
+                    <span class="signer" >{{item.singername}}</span>
+                </a>
+                <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
 
         </ul>

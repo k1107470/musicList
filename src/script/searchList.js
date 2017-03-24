@@ -7,8 +7,7 @@
         .controller('SearchListController', [
             '$scope', '$stateParams',  'MainService', 'params',
             function ($scope, $stateParams,  MainService, params) {
-                //获得数据加载状态
-                console.log($scope.miss);
+
 
                 //搜索列表
                 $scope.search = [];
@@ -26,8 +25,22 @@
                 //获得搜索的url地址
                 $scope.searchUrl = params.searchAddress;
 
+
+                var promise = MainService.getSearch();
+                    promise.then(
+                        function(res){
+                            console.log(res);
+                            $scope.search = res.data.song.list;
+                            $scope.keyword = res.data.keyword;
+                            $scope.totalnum = res.data.song.totalnum;
+                            $scope.currentPage = res.data.song.curpage;
+                            $scope.totalPage = Math.ceil($scope.totalnum / $scope.num);
+                        },function(){
+                            console.log('获取失败');
+                        }
+                    );
                 //定义搜索字符串
-                $scope.data = {
+                /*$scope.data = {
                     p: $stateParams.page,//当前页数
                     n: params.num,//每页的数量
                     w: $stateParams.keyword//搜索关键词
@@ -43,7 +56,7 @@
                     //console.log('当前页数'+$scope.currentPage);
                     //同步数据
                     $scope.$apply();
-                });
+                });*/
 
                 //获得90*90的图
                 $scope.getImg = MainService.getImg;

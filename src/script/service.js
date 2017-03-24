@@ -4,47 +4,106 @@
 (function (angular) {
     angular.module('app.service', [])
         .service('MainService', [
-            '$sce', '$http', '$stateParams', '$window', '$document', 'params',
-            function ($sce, $http, $stateParams, $window, $document, params) {
-                //没有获得到数据
-                //this.miss = undefined;//1代表得到数据，-1代表没有得到数据
+            '$sce', '$http', '$q','$stateParams', '$window', '$document', 'params',
+            function ($sce, $http,$q, $stateParams, $window, $document, params) {
+
 
                 //根据榜单的topid，返回数据
                 //var that = this;
-                this.getSong = function (topid, func) {
+                this.getSong = function (topid) {
+                    var deferred = $q.defer(); //声明承诺
                     var url = params.address + 'showapi_appid=' + params.showapi_appid + '&showapi_sign=' + params.showapi_sign
                         + '&topid=' + topid;
                     //将请求地址变安全
                     url = $sce.trustAsResourceUrl(url);
-                    //console.log(url);
-                    $http.jsonp(url, {jsonpCallbackParam: 'jsonpcallback'}).then(func, function () {
-                        //that.miss = -1;
-                        console.log('加载失败');
-                    });
-                    /*$http({
-                     method:'get',
-                     url:url
-                     }).then(function(res){
-                     //return res.data.showapi_res_body.pagebean.songlist;
-                     });*/
+                    $http.jsonp(url,{jsonpCallbackParam: 'jsonpcallback'}).then(
+                        function(data){//成功的回调
+                            console.log(data);
+                            deferred.resolve(data);
+                        },function(data){//失败的回调
+                            console.log(222);
+                            deferred.reject(data);
+                        }
+                    );
+                    return deferred.promise;
+
                 };
 
                 //根据专辑id获得歌词
-                this.getLyc = function (songid, func) {
+                this.getLyc = function (songid) {
+                    var deferred = $q.defer(); //声明承诺
                     var url = params.lycAddress + 'showapi_appid=' + params.showapi_appid + '&showapi_sign=' + params.showapi_sign
                         + '&musicid=' + songid;
                     //将请求地址变安全
                     url = $sce.trustAsResourceUrl(url);
                     //console.log(url);
-                    $http.jsonp(url, {jsonpCallbackParam: 'jsonpcallback'}).then(func, function () {
-                        //that.miss = -1;
-                        console.log('加载失败');
-
-                    });
+                    $http.jsonp(url, {jsonpCallbackParam: 'jsonpcallback'}).then(
+                        function(data){//成功的回调
+                            console.log(data);
+                            deferred.resolve(data);
+                        },function(data){//失败的回调
+                            console.log(222);
+                            deferred.reject(data);
+                        }
+                    );
+                    return deferred.promise;
                 };
 
+                //手写搜索的jsonp
+                this.getSearch = function(){ //获取搜索信息
+                    var deferred = $q.defer(); //声明承诺
+                    var url = params.searchAddress + 'n='+ params.num + '&p=' + $stateParams.page + '&w=' + $stateParams.keyword;
+                    //将请求地址变安全
+                    url = $sce.trustAsResourceUrl(url);
 
-                //手写jsonp,其中qq音乐的回调函数名称为jsonpCallback,qq官方的搜索api不支持angular的回调函数
+
+                    var cb = 'jsonp' + (+new Date());
+                    //dom建立script节点
+                    var scriptEle = $document[0].createElement('script');
+                    scriptEle.src = url + "&jsonpCallback" + "=" + cb;
+                    //console.log(script);
+                    //第三步挂载回调函数
+
+                    $window[cb] = function (data) {
+                        deferred.resolve(data);
+                        //在执行完成callback回调后，删除jsonp使用的script标签
+                        $document[0].body.removeChild(scriptEle);
+
+                    };
+                    //添加到html中
+                    $document[0].body.appendChild(scriptEle);
+
+                    return deferred.promise;
+                };
+
+                //手写详细信息的jsonp
+                this.getDetail = function(){
+                    var deferred = $q.defer(); //声明承诺
+                    var url = params.detailUrl + 'albummid=' + $stateParams.albummid;
+                    //将请求地址变安全
+                    url = $sce.trustAsResourceUrl(url);
+
+
+                    var cb = 'jsonp' + (+new Date());
+                    //dom建立script节点
+                    var scriptEle = $document[0].createElement('script');
+                    scriptEle.src = url + "&jsonpCallback" + "=" + cb;
+                    //console.log(script);
+                    //第三步挂载回调函数
+
+                    $window[cb] = function (data) {
+                        deferred.resolve(data);
+                        //在执行完成callback回调后，删除jsonp使用的script标签
+                        $document[0].body.removeChild(scriptEle);
+
+                    };
+                    //添加到html中
+                    $document[0].body.appendChild(scriptEle);
+
+                    return deferred.promise;
+                };
+
+                /*//手写jsonp,其中qq音乐的回调函数名称为jsonpCallback,qq官方的搜索api不支持angular的回调函数
                 this.jsonp = function (url, data, callback) {
 
                     var cb = 'jsonp' + (+new Date());
@@ -72,7 +131,7 @@
                     $document[0].body.appendChild(scriptEle);
 
 
-                };
+                };*/
                 //根据song_id返回图片
                 this.getImg = function (id) {
 

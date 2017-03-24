@@ -5,15 +5,15 @@
 (function(angular){
     var myApp = angular.module('musicList',['app.route','app.config']);
     /*自定义字符串长度过滤器*/
-    myApp.filter('cut', function () {
-        /**
+   /* myApp.filter('cut', function () {
+        /!**
          *
          * @param value 过滤的文本
          * @param wordwise 布尔类型，是否去除字符串右边空格
          * @param max  需要过滤的长度
          * @param tail 省略的字符
          * @returns {*}
-         */
+         *!/
          return function (value, wordwise, max, tail) {
                 if (!value) return '';
 
@@ -31,12 +31,12 @@
 
                 return value + (tail || ' …');
             };
-        });
+        });*/
 
     myApp.config(['$locationProvider',function($locationProvider){
         $locationProvider.hashPrefix('');
     }]);
-    myApp.controller('AppController',['$scope','$state','MainService',function($scope,$state,MainService){
+    myApp.controller('AppController',['$scope','$state','$q','MainService',function($scope,$state,$q,MainService){
         $scope.keyword = '';
         $scope.show_flag = false;
         $scope.search = function(){
@@ -50,11 +50,28 @@
         $scope.showOrHide = function(){
             $scope.show_flag = !$scope.show_flag;
         };
+        $scope.listArr = [];
         $scope.list_27 =[];//新歌榜
         $scope.list_26 =[];//热歌榜
         $scope.list_4 =[];//流行榜
 
-        MainService.getSong(27,function(res){
+
+        $q.all([MainService.getSong(27),MainService.getSong(26),MainService.getSong(4)])
+            .then(
+                function(dataArr){
+                    console.log(dataArr);
+                    $scope.listArr = dataArr;
+                    if($scope.listArr.length){
+                        $scope.list_27 = dataArr[0].data.showapi_res_body.pagebean.songlist.slice(0,4);
+                        $scope.list_26 = dataArr[1].data.showapi_res_body.pagebean.songlist.slice(0,4);
+                        $scope.list_4 = dataArr[2].data.showapi_res_body.pagebean.songlist.slice(0,4);
+                    }
+
+                },function(){
+                    console.log('获取失败');
+                }
+            );
+        /*MainService.getSong(27,function(res){
 
             $scope.list_27 = res.data.showapi_res_body.pagebean.songlist.slice(0,5);
             //console.log($scope.list_27);
@@ -68,6 +85,6 @@
             $scope.list_4 = res.data.showapi_res_body.pagebean.songlist.slice(0,5);
             //console.log($scope.list_4);
 
-        });
+        });*/
     }])
 })(angular);

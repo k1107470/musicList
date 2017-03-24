@@ -8,8 +8,6 @@
             function ($scope, $http, $stateParams, MainService) {
 
 
-
-
                 $scope.list = [];
                 $scope.topid = $stateParams.id;
                 $scope.array = [{'id': 27, 'title': '新歌'}, {'id': 26, 'title': '热歌'}, {
@@ -30,9 +28,13 @@
                     }
                 }();
 
-                MainService.getSong($scope.topid, function (res) {
-                    $scope.list = res.data.showapi_res_body.pagebean.songlist;
-                });
+                var promise = MainService.getSong($scope.topid);
+                promise.then(
+                    function (data) {//成功回调
+                        $scope.list = data.data.showapi_res_body.pagebean.songlist;
+                    }, function (res) {//失败回调
+                        console.log('请求失败');
+                    });
 
 
             }]);
