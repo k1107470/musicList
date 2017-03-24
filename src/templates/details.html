@@ -1,0 +1,40 @@
+<section id="details" class="container">
+
+
+    <div class="container">
+        <div class="album-img pull-left">
+            <img class="media-object" ng-src="{{getImg(albummid)}}" alt="专辑图片">
+        </div>
+        <div class="content">
+            <div class="content-body">
+                <h3 class="media-heading">{{getSongname(detail)}}</h3>
+
+
+                <span class="singer">{{getSinger(detail)}}</span>
+                <ul class="container">
+                    <li class="col-md-3 title">专辑:<span title="{{detail.list[0].albumname}}">{{detail.list[0].albumname}}</span></li>
+                    <li class="col-md-9">语种:{{detail.lan}}</li>
+                    <li class="col-md-3">流派:{{detail.genre}}</li>
+                    <li class="col-md-9">发行公司:{{detail.company}}</li>
+                    <li class="col-md-4">发行时间:{{detail.aDate}}</li>
+                    <li id="desc" class="col-md-12" ng-class="{open:toggle}" ng-init="toggle=false">简介:{{detail.desc}}
+                        <a href="" class="pull-right" ng-click="toggle=!toggle">{{toggle?'收起':'展开'}}</a>
+                    </li>
+                    <li class="btns col-md-12">
+                        <button class="btn btn-default" ng-click="playItem(getItem(detail))">播放</button>
+                        <button class="btn btn-default" ng-click="addToList(getItem(detail))">收藏</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="lyc_area">
+            <h4>歌词</h4>
+            <ul>
+                <li ng-repeat="row in lyc track by $index">{{row}}</li>
+
+            </ul>
+        </div>
+    </div>
+
+</section>

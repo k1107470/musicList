@@ -1,31 +1,11 @@
-<h1 class="page-header">新歌榜</h1>
+<h1 class="page-header">{{title}}</h1>
 <div id="musicTable">
-    <h3 class="sub-header">Section title</h3>
-    <!--<table id="myTable" class="table table-striped col-xs-8 col-sm-12" style="width: 100%">
-        <thead>
-        <tr>
-            <th style="width: 10%"></th>
-            <th style="width: 70%">标题</th>
-            <th style="width: 10%">时长</th>
-            <th style="width: 10%">歌手</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in list">
-            <td class="index" ng-bind="$index+1"></td>
-            <td class="song_content">
-                <img ng-if="$index<3" ng-src="{{item.albumpic_small}}" alt="海报" width="50" height="50">
-                <a href="#" class="music_title" ng-bind="item.songname"></a>
-                <div class="btns">
-                    <span class="play-icon icon-play-circled" title="播放"></span>
-                </div>
-            </td>
-            <td ng-bind="item.seconds | date:'mm:ss'"></td>
-            <td title="{{item.singername}}" ng-bind="item.singername|cut:true:5"></td>
-        </tr>
+    <h3 class="sub-header">歌曲列表
+        <button  class="btn btn-default" ng-click="playItem(list)">播放全部</button>
+        <button  class="btn btn-default" ng-click="addToList(list)">全部加入</button>
+        <button  class="btn btn-default" ng-click="removeList()">清除列表</button>
+    </h3>
 
-        </tbody>
-    </table>-->
     <div id="myTable">
         <div class="thead">
             <div class="th_index"  ></div>
@@ -33,6 +13,17 @@
             <div class="th_seconds"   title="时长">时长</div>
             <div class="th_singer"   title="歌手">歌手</div>
         </div>
+
+        <!--加载对应的显示-->
+        <div class="loading" ng-hide="list.length">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
         <!--屏幕小于768px才有点击事件-->
         <div class="tbody" ng-class="{bgc_odd:$index%2===0}" ng-repeat="item in list" ng-init="flag=false" ng-mousemove="flag=true" ng-mouseleave="flag=false" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">
             <div class="td_index" >{{$index+1}}</div>
@@ -40,7 +31,7 @@
             <div class="td_title" >
                 <!--显示前三项的图片，后面的判断是否有mousemove事件-->
                 <img ng-if="$index<3?$index<3:flag" ng-src="{{item.albumpic_small?item.albumpic_small:item.albumpic_big}}" alt="海报" width="90" height="90">
-                <a href="#" ng-click="$event.stopPropagation()" class="music_title" title="{{item.songname}}">{{item.songname}}</a>
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" class="music_title" title="{{item.songname}}">{{item.songname}}</a>
                 <div class="btns">
                     <span class="play-icon icon-play-circled" title="播放" ng-click="playItem(item)"></span>
                     <span class="play-icon icon-plus" title="添加到列表" ng-click="addToList(item)"></span>

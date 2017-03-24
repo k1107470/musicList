@@ -3,39 +3,53 @@
 <!--轮播图结束-->
 
 <!--3个面板-->
-<section id="panels" class="container">
+<section id="homepage" >
     <div class="page-header">
         <h4 class="text-info">榜单</h4>
     </div>
 
-    <div class="list-group col-xs-4">
-        <a href="#" class="list-group-item active">
-            Cras justo odio
-        </a>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
+    <!--加载对应的显示-->
+    <div class="loading" ng-if="!(list_27.length||list_26.length||list_4.length)">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+    <!--加载3组数据，需全部加载完毕才能展示-->
+    <div  class="container panels" ng-show="!!list_27.length&&!!list_26.length&&!!list_4.length">
+        <ul class="list-group col-sm-4">
+            <li  class="list-group-item head">
+                新歌榜 <a ui-sref="music.tabs.list({id:27})" class="pull-right">更多</a>
+            </li>
+            <li  class="list-group-item" ng-repeat="item in list_27" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()">{{ item.songname}}</a>
+                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+            </li>
 
-    <div class="list-group col-xs-4">
-        <a href="#" class="list-group-item active">
-            Cras justo odio
-        </a>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
-    </div>
+        </ul>
 
-    <div class="list-group col-xs-4">
-        <a href="#" class="list-group-item active">
-            Cras justo odio
-        </a>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
+        <ul class="list-group col-sm-4">
+            <li  class="list-group-item head">
+                热歌榜 <a ui-sref="music.tabs.list({id:26})" class="pull-right">更多</a>
+            </li>
+            <li  class="list-group-item" ng-repeat="item in list_26" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()">{{ item.songname}}</a>
+                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+            </li>
+
+        </ul>
+
+        <ul class="list-group col-sm-4">
+            <li  class="list-group-item head">
+                流行榜 <a ui-sref="music.tabs.list({id:4})" class="pull-right">更多</a>
+            </li>
+            <li  class="list-group-item" ng-repeat="item in list_4" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1 }}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()"> {{item.songname}}</a>
+                <span ng-if="clientWidth>768" class="pull-right icon-play-circled" ng-click="playItem(item)"></span>
+            </li>
+
+        </ul>
     </div>
 </section>
 <!--3个面板结束-->

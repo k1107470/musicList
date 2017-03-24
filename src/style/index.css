@@ -10,7 +10,7 @@ body {
  */
 
 .sub-header {
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     border-bottom: 1px solid #eee;
 }
 
@@ -317,7 +317,7 @@ body {
 #myTable .tbody .td_title a{
     padding:0 10px;
     display: inline-block;
-    max-width: 80%;
+    max-width: 75%;
     overflow:hidden;
     word-break:keep-all;
     white-space:nowrap;
@@ -394,9 +394,154 @@ body {
         transition: bottom 1s ;
     }
 
-    .navbar:hover #playerContainer{
+    .navbar:hover #playerContainer,#playerContainer.hover{
         bottom:5px;
         transition: bottom 1s ;
     }
 
+}
+/* css3 loading动画*/
+.loading{
+    width: 150px;
+    height: 15px;
+    margin: 0 auto;
+    margin-top:100px;
+}
+.loading span{
+    display: inline-block;
+    width: 15px;
+    height: 100%;
+    margin-right: 5px;
+    background: lightgreen;
+    -webkit-transform-origin: right bottom;
+    -webkit-animation: load 1s ease infinite;
+}
+.loading span:last-child{
+    margin-right: 0;
+}
+@-webkit-keyframes load{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        -webkit-transform: rotate(90deg);
+    }
+}
+.loading span:nth-child(1){
+    -webkit-animation-delay:0.13s;
+}
+.loading span:nth-child(2){
+    -webkit-animation-delay:0.26s;
+}
+.loading span:nth-child(3){
+    -webkit-animation-delay:0.39s;
+}
+.loading span:nth-child(4){
+    -webkit-animation-delay:0.52s;
+}
+.loading span:nth-child(5){
+    -webkit-animation-delay:0.65s;
+}
+
+/*详细页面的样式*/
+#details {
+    margin-top:50px;
+    /*color: #333;*/
+}
+#details .content {
+    padding-left: 300px;
+}
+#details .content-body {
+    padding-left:15px;
+}
+#details .content-body ul {
+    margin-top:10px;
+    padding-left:0;
+    list-style: none;
+    width:100%;
+}
+#details .content-body ul li {
+    padding: 0;
+}
+#details .content-body .title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#details .content-body #desc{
+    overflow:hidden;
+    white-space:nowrap;
+    margin-bottom: 10px;
+}
+#details .content-body #desc.open {
+    white-space: normal;
+}
+#details  .lyc_area {
+    margin-top:20px;
+}
+#details .lyc_area ul {
+    list-style: none;
+
+}
+@media (max-width: 768px){
+    #details .album-img img {
+        width:90px;
+        height:90px;
+    }
+    #details .content {
+        padding-left: 90px;
+    }
+    #details .lyc_area ul {
+        padding-left:10px;
+    }
+
+}
+
+/*home页面*/
+
+#homepage .page-header h4 {
+    padding-left:50px;
+}
+
+#homepage .panels ul {
+
+}
+#homepage .panels ul li {
+    width: 80%;
+
+}
+
+#homepage .panels .head {
+    background-color: #337ab7;
+}
+#homepage .panels .head a{
+    color: #000;
+
+}
+#homepage .panels ul li span {
+    font-size:20px;
+    line-height:20px;
+    cursor: pointer;
+    display: none;
+    color: #fff;
+}
+#homepage .panels ul li:not(.head):hover{
+    background-color: rgba(50,50,50,.5) ;
+
+}
+#homepage .panels ul li:not(.head) a{
+    display: inline-block;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    line-height:16px;
+}
+#homepage .panels ul li:not(.head):hover a{
+    width:70%;
+}
+#homepage .panels ul li:hover span {
+    display: block;
 }

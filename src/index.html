@@ -36,7 +36,7 @@
         <a ui-sref="music.tabs.list({id:17})" class="col-md-1 col-sm-2 col-xs-3">日本</a>
         <a ui-sref="music.tabs.list({id:16})" class="col-md-1 col-sm-2 col-xs-3">韩国</a>
         <a ui-sref="music.tabs.list({id:36})" class="col-md-1 col-sm-2 col-xs-4">k歌金曲</a>
-        <a ui-sref="music.tabs.list({id:28})" class="col-md-2 col-sm-2 col-xs-4 col-xs-offset-2 col-sm-offset-2">网络歌曲</a>
+        <a ui-sref="music.tabs.list({id:28})" class="col-md-2 col-md-offset-0 col-sm-2 col-xs-4 col-xs-offset-2 col-sm-offset-2">网络歌曲</a>
     </div>
 </nav>
 <!--头部结束-->
@@ -64,10 +64,9 @@
 <script>
     (function (window) {
 
-        //返回顶部按钮显示隐藏
-//        var collapse_btn = document.getElementById('collapse_btn');
 
 
+        //回到顶部
         var toTop = document.getElementById('toTop');
         window.onscroll = function () {
             var scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
@@ -77,6 +76,14 @@
             } else {
                 toTop.className = 'btn btn-default hidden';
             }
+        };
+        //全局上挂载一个触发hover的事件
+        window.hoverAndLeave = function (){
+            var player = document.getElementById('playerContainer');
+            player.classList.toggle('hover');
+            setTimeout(function(){
+                player.classList.toggle('hover');
+            },1000)
         };
 
         //

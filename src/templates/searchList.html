@@ -7,23 +7,36 @@
     <ul class="media-list">
         <li class="media" ng-repeat="item in search">
             <div class="media-left">
-                <a href="#">
-                    <img class="media-object" ng-src="{{getImg(item.albummid)}}" alt="专辑图片">
+                <a ui-sref="music.details({songid:item.songid,singer:item.singer[0].name,albummid:item.albummid})">
+                    <img class="media-object" ng-src="{{getImg(item.albummid)}}" alt="专辑图片" width="90" height="90">
                 </a>
             </div>
             <div class="media-body">
                 <h3 class="media-heading">{{item.songname}}</h3>
                 <p>专辑：{{item.albumname}}</p>
-                <p ng-repeat="i in item.singer"><span>歌手：{{i.name}}<span ng-if="!$last">、</span></span></p>
+                <p >歌手：<span ng-repeat="i in item.singer">{{i.name}}<span ng-if="!$last">、</span></span>
+                    <button class="btn btn-default" ng-click="playItem(item)">播放</button>
+                </p>
             </div>
         </li>
     </ul>
 
+
+    <!--加载对应的显示-->
+    <div class="loading" ng-hide="search.length">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
     <nav ng-if="search.length">
 
         <ul class="pager" >
-            <li><a ui-sref="music.tabs.search({page:currentPage-1==0?1:currentPage-1})">上一页</a></li>
-            <li><a ui-sref="music.tabs.search({page:currentPage+1>totalPage?totalPage:currentPage+1})">下一页</a></li>
+            <li ng-class="{disabled:currentPage==1}"><a ui-sref="music.tabs.search({page:currentPage-1==0?1:currentPage-1})">上一页</a></li>
+            <li ng-class="{disabled:currentPage == totalPage}"><a ui-sref="music.tabs.search({page:currentPage+1>totalPage?totalPage:currentPage+1})">下一页</a></li>
         </ul>
         <p>总计 <span>{{totalnum}}</span>消息， <span>{{currentPage}}</span>/<span>{{totalPage}}</span>页</p>
     </nav>

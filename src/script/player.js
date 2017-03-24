@@ -241,6 +241,8 @@ Player.prototype = {
         if (this.index == this.list.length)
             this.index = 0;
         this.playAndPause(true);
+        this.updateTime();
+
     },
     //上一首
     playPrev: function() {
@@ -249,6 +251,7 @@ Player.prototype = {
         if (this.index == -1)
             this.index = this.list.length - 1;
         this.playAndPause(true);
+        this.updateTime();
     },
     //播放列表中指定的项
     playIndex: function(id) {
@@ -260,6 +263,7 @@ Player.prototype = {
                 this.loadNewSrc();
                 this.index = i;
                 this.playAndPause(true);
+                this.updateTime();
                 return;
             }
         }
@@ -447,14 +451,17 @@ Player.prototype = {
         var li = document.getElementById(id);
         //获取当前li的相对ul的y方向的位移
         var liTop = li.offsetTop;
+        //console.log('当前项距离顶部高度'+liTop);
         //获取li自身的高度
         var liH = li.offsetHeight;
         // 获取列表容器
         var list = this.audio_list;
         //获取列表容器的展示的高度
         var listH = list.offsetHeight;
+        //console.log('容器展示高度'+listH);
         //获取列表容器的总计的高度（包括滚动条部分）
         var listSH = list.scrollHeight;
+        //console.log('容器总高度'+listSH);
         //liTop大于50%高度就可以发生改变
         if (liTop > listH * 0.5) {
             //保持当前li在从下往上数的第三个的位置
@@ -464,6 +471,6 @@ Player.prototype = {
             //前几个就不用卷滚动条
             list.scrollTop = 0;
         }
-        // console.log(list.scrollTop);
+         //console.log('卷去的高度'+list.scrollTop);
     }
-}
+};

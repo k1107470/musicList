@@ -16,8 +16,14 @@
                     })
                     .state('music.home',{
                         url:'/home',
-                        //controller:'MainController',
+                        controller:'AppController',
                         templateUrl:'templates/home.html'
+                    })
+                    .state('music.details',{
+                        url:'/details/{songid}/{albummid}',
+                        controller:'DetailsController',
+                        templateUrl:'templates/details.html'
+
                     })
                     .state('music.tabs',{
                         url:'/tabs',
@@ -37,13 +43,9 @@
                         templateUrl:'templates/searchList.html'
 
                     })
-                    .state('music.tabs.details',{
-                        url:'/details/{songid}/{singer}/{albummid}',
-                        controller:'DetailsController',
-                        templateUrl:'templates/details.html'
 
-                    })
                 ;
-                $urlRouterProvider.otherwise('/music/tabs/list/27');
+                //$urlRouterProvider.otherwise('/music/tabs/list/27');
+                $urlRouterProvider.otherwise('/music/home');
             }]);
 })(angular);

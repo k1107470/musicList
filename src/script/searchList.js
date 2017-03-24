@@ -7,6 +7,9 @@
         .controller('SearchListController', [
             '$scope', '$stateParams',  'MainService', 'params',
             function ($scope, $stateParams,  MainService, params) {
+                //获得数据加载状态
+                console.log($scope.miss);
+
                 //搜索列表
                 $scope.search = [];
                 $scope.keyword = '';
@@ -30,7 +33,7 @@
                     w: $stateParams.keyword//搜索关键词
                 };
                 MainService.jsonp($scope.searchUrl, $scope.data, function (res) {
-                    //console.log(res.data.song.list);
+                    //console.log(res);
                     $scope.search = res.data.song.list;
                     $scope.keyword = res.data.keyword;
                     $scope.totalnum = res.data.song.totalnum;

@@ -36,7 +36,7 @@
     myApp.config(['$locationProvider',function($locationProvider){
         $locationProvider.hashPrefix('');
     }]);
-    myApp.controller('AppController',['$scope','$state',function($scope,$state){
+    myApp.controller('AppController',['$scope','$state','MainService',function($scope,$state,MainService){
         $scope.keyword = '';
         $scope.show_flag = false;
         $scope.search = function(){
@@ -47,6 +47,27 @@
             $state.go('music.tabs.search',{page:1,keyword:$scope.keyword});
             //$location.url('/music/tabs/search/1/'+ $scope.keyword);
         };
+        $scope.showOrHide = function(){
+            $scope.show_flag = !$scope.show_flag;
+        };
+        $scope.list_27 =[];//新歌榜
+        $scope.list_26 =[];//热歌榜
+        $scope.list_4 =[];//流行榜
 
+        MainService.getSong(27,function(res){
+
+            $scope.list_27 = res.data.showapi_res_body.pagebean.songlist.slice(0,5);
+            //console.log($scope.list_27);
+        });
+        MainService.getSong(26,function(res){
+            $scope.list_26 = res.data.showapi_res_body.pagebean.songlist.slice(0,5);
+            //console.log($scope.list_26);
+
+        });
+        MainService.getSong(4,function(res){
+            $scope.list_4 = res.data.showapi_res_body.pagebean.songlist.slice(0,5);
+            //console.log($scope.list_4);
+
+        });
     }])
 })(angular);
