@@ -7,8 +7,8 @@
         .constant('params', {
             showapi_appid: '33166',
             showapi_sign: '346362089aad4e5680f74ffdaa7e0c2f',
-            address: "http://route.showapi.com/213-4?",//榜单查询地址，参数topid来区分榜单
-            lycAddress:'http://route.showapi.com/213-2?',//musicid = songid
+            address: "https://route.showapi.com/213-4?",//榜单查询地址，参数topid来区分榜单
+            lycAddress:'https://route.showapi.com/213-2?',//musicid = songid
             searchAddress: 'https://c.y.qq.com/soso/fcgi-bin/client_search_cp?',
             num: 20,
             detailUrl: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg?'//?albummid=
