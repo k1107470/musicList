@@ -18,7 +18,7 @@
                     url = $sce.trustAsResourceUrl(url);
                     $http.jsonp(url,{jsonpCallbackParam: 'jsonpcallback'}).then(
                         function(data){//成功的回调
-                            console.log(data);
+                            //console.log(data);
                             deferred.resolve(data);
                         },function(data){//失败的回调
                             console.log(222);
@@ -39,10 +39,9 @@
                     //console.log(url);
                     $http.jsonp(url, {jsonpCallbackParam: 'jsonpcallback'}).then(
                         function(data){//成功的回调
-                            console.log(data);
+                            //console.log(data);
                             deferred.resolve(data);
                         },function(data){//失败的回调
-                            console.log(222);
                             deferred.reject(data);
                         }
                     );

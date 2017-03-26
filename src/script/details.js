@@ -21,14 +21,13 @@
                         promise1.then(
                           function(res){
                               $scope.detail = res.data;
-                              console.log($scope.detail);
-                              get($scope.detail);//一些需要返回数据而同步的数据
+                              //console.log($scope.detail);
+                              get($scope.detail);//得到一些需要返回数据而同步的数据
                           },function(res){
                                 console.log("获取失败");
                             }
                         );
 
-                    console.log($scope.detail);
                     /*MainService.jsonp(params.detailUrl, {albummid: $scope.albummid}, function (res) {
 
                         $scope.detail = res.data;
@@ -40,7 +39,7 @@
                     promise2.then(
                         function(res){
                             $scope.lyc = getArr(res.data.showapi_res_body.lyric_txt);
-                            console.log($scope.lyc);
+                            //console.log($scope.lyc);
                         },function(res){
                             console.log("获取失败");
                         }
@@ -72,7 +71,7 @@
 
                         return result;
                     }
-
+                    //一些需要返回数据而同步的数据的方法集合
                     function get (detail) {
                         //获得大图
                         $scope.getImg = MainService.getBImg;

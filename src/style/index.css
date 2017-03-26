@@ -137,8 +137,8 @@ body {
 /*字体图标*/
 @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.eot?12402031');
-    src: url('../font/fontello.eot?12402031#iefix') format('embedded-opentype'), url('../font/fontello.woff2?12402031') format('woff2'), url('../font/fontello.woff?12402031') format('woff'), url('../font/fontello.ttf?12402031') format('truetype'), url('../font/fontello.svg?12402031#fontello') format('svg');
+    src: url('../font/fontello.eot?88338271');
+    src: url('../font/fontello.eot?88338271#iefix') format('embedded-opentype'), url('../font/fontello.woff2?88338271') format('woff2'), url('../font/fontello.woff?88338271') format('woff'), url('../font/fontello.ttf?88338271') format('truetype'), url('../font/fontello.svg?88338271#fontello') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -154,7 +154,7 @@ body {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?12402031#fontello') format('svg');
+    src: url('../font/fontello.svg?88338271#fontello') format('svg');
   }
 }
 */
@@ -192,45 +192,79 @@ body {
     content: '\e800';
 }
 
+
 .icon-play:before {
     content: '\e801';
 }
+
+
 
 .icon-next:before {
     content: '\e802';
 }
 
+
+
 .icon-prev:before {
     content: '\e803';
 }
+
+
 
 .icon-pause:before {
     content: '\e804';
 }
 
+
+
 .icon-volume-off:before {
     content: '\e805';
 }
+
+
 
 .icon-volume-up:before {
     content: '\e806';
 }
 
+
+
 .icon-play-circled:before {
     content: '\e807';
 }
+
+
 
 .icon-folder:before {
     content: '\e808';
 }
 
+
+
 .icon-folder-open:before {
     content: '\e809';
 }
 
+
+
+.icon-left-open:before {
+    content: '\e80a';
+}
+
+
+
+.icon-right-open:before {
+    content: '\e80b';
+}
+
+
+
 .icon-plus:before {
     content: '\f196';
 }
+
+
+
 
 
 
@@ -501,6 +535,142 @@ body {
 
 /*home页面*/
 
+    /*轮播图*/
+#homepage .lunbo {
+    margin-top:50px;
+    text-align: center;
+    position: relative;
+}
+#homepage .lunbo ul {
+    list-style: none;
+    padding: 50px 0;
+    height: 500px;
+    background: #000 url('../images/bg_index_new.jpg') 50% 0 repeat-x;
+}
+
+/*翻页*/
+#homepage .lunbo:hover .next,
+#homepage .lunbo:hover .prev{
+    display: block;
+}
+
+#homepage .lunbo .next,
+#homepage .lunbo .prev {
+    display: none;
+    position: absolute;
+    bottom:50%;
+    margin-bottom: 10px;
+    width: 40px;
+    height:80px;
+    font-size: 30px;
+    text-align: center;
+    line-height:80px;
+    color: #000;
+    background-color: rgba(153,153,153,.4);
+    transition: all .2s  ease;
+    cursor: pointer;
+    z-index: 999;
+}
+#homepage .lunbo .next {
+    right:0;
+    /*text-align: right;*/
+}
+#homepage .lunbo .prev {
+    left:0;
+    /*text-align: left;*/
+}
+#homepage .lunbo .next:hover,
+#homepage .lunbo .prev:hover{
+    text-decoration: none;
+    width: 60px;
+    background-color: #31c27c;
+}
+
+/*控制器*/
+#homepage .lunbo .ctrls {
+    position: absolute;
+    bottom:50px;
+    width:100%;
+    font-size: 0;
+    text-align: center;
+    z-index:99;
+}
+
+
+#homepage .lunbo .ctrls i{
+    display: inline-block;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: #333;
+    cursor: pointer;
+
+}
+#homepage .lunbo .ctrls i.active {
+    background-color: #fff;
+}
+
+
+
+
+/*内容*/
+#homepage .lunbo .albumpic {
+    height:300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*text-align: center;*/
+    position: relative;
+}
+#homepage .lunbo .albumpic:hover .play {
+    visibility: visible;
+    cursor: pointer;
+    width:60px;
+    height:60px;
+    margin-top:-30px;
+    margin-left:-30px;
+    line-height:60px;
+    text-align: center;
+}
+#homepage .lunbo .albumpic span{
+    visibility: hidden;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top:-15px;
+    margin-left:-15px;
+    display: inline-block;
+    font-size:25px;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    color: #333;
+    background-color: rgba(245,245,245,.6);
+    text-align: center;
+    line-height:30px;
+    transition: all .2s ease;
+}
+#homepage .lunbo .content p {
+    margin-top:10px ;
+
+}
+#homepage .lunbo .content a {
+    color: #fff;
+}
+#homepage .lunbo .content a:hover {
+    color: #31c27c;
+    /*cursor: pointer;*/
+}
+#homepage .ishide {
+    display: none;
+}
+#homepage .active {
+    display: block;
+}
+
+
+    /*榜单*/
 #homepage .page-header h4 {
     padding-left:50px;
 }
@@ -554,3 +724,5 @@ body {
 #homepage .panels ul li:hover .play {
     display: block;
 }
+
+/*home结束*/

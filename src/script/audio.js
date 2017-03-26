@@ -9,11 +9,27 @@
             //获取屏幕的宽度
             $scope.clientWidth = $window.document.documentElement.clientWidth||$window.innerWidth||$window.document.body.clientWidth;
             /*实例化一个播放器组件*/
-             var  player  = new Player({
+             var player  = new Player({
                 container: 'playerContainer',
                 audio: 'myPlayer'
             });
-            $scope.playList = [];
+            //console.log(player.save());
+            var storage = $window.localStorage;
+            $scope.playList = storage['myPlayList'] ? JSON.parse(storage['myPlayList']) : [];
+
+            //判断是否有缓存，有怎更新播放器的播放列表
+            if(!!storage['myPlayList'] ){
+                player.list = $scope.playList;
+
+                //更新列表
+                player.upDateList();
+            }
+
+
+            // 定义一个储存缓存方法
+            /*$scope.save = function() {
+                storage['myPlayList'] = angular.toJson($scope.playList);
+            };*/
 
             //获得该项返回的字面量对象
             //数组或对象
@@ -47,8 +63,11 @@
                 //末尾追加
                 $scope.playList=$scope.playList.concat(list);
 
-                player.list = $scope.playList;
+                //只要$scope.playList发生增删改的方法，就需要储存缓存
 
+
+                player.list = $scope.playList;
+                player.save();
                 //更新列表
                 player.upDateList();
 
@@ -65,8 +84,12 @@
                 //插入当前位置
                 $scope.playList=$scope.playList.splice(0,player.index).concat(getItem(obj)).concat($scope.playList);
 
+                //只要$scope.playList发生增删改的方法，就需要储存缓存
+
+
                 player.list = $scope.playList;
-                $scope.addToList(obj);
+                player.save();
+                //$scope.addToList(obj);
                 //播放当前位置的音乐
                 player.playIndex(player.list[player.index].id);
                 //触发hover事件
@@ -76,11 +99,20 @@
 
             $scope.removeList = function(){
                 $scope.playList = [];
+
+                storage.removeItem('myPlayList');
+
+                //只要$scope.playList发生增删改的方法，就需要储存缓存
+
+
                 player.list = [];
+                player.save();
                 player.index = 0;
                 //更新列表
                 player.upDateList();
-            }
+            };
 
-        }])
+
+        }]);
+
 })(angular);

@@ -7,12 +7,14 @@ Player.prototype = {
         this.container = option.container.constructor === String ? document.getElementById(option.container) : option.container;
         this.audio = option.audio.constructor === String ? document.getElementById(option.audio) : option.audio;
         //播放列表
-        this.list = [/*{
+        this.storage = window.localStorage;
+        this.list = this.storage['myPlayList']?JSON.parse(this.storage['myPlayList']) : [];
+       /* this.list = [/!*{
             'id': 0,
             'songId': ,
             'name': "你就不要想起我 (Live) (原唱：田馥甄)",
             'src': "http://ws.stream.qqmusic.qq.com/201040845.m4a?fromtag=46"
-        }*/];
+        }*!/];*/
         //定义一个列表标记
         this.index = 0;
         //定义一个当前暂停时间的标记，暂停时获取当时时间，切换歌曲后归零
@@ -104,6 +106,10 @@ Player.prototype = {
 
         return player;
     },
+    save:function(){
+        this.storage['myPlayList'] = JSON.stringify(this.list);
+    }
+    ,
     //播放所产生的事件
     trigger:function(){
         //记录下暂停的时间
@@ -171,6 +177,7 @@ Player.prototype = {
             //删除列表某一项
             else if (target.nodeName.toUpperCase() == 'SPAN') {
                 that.delList(target.parentNode.id);
+                that.save();
             }
 
         });

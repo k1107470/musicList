@@ -16,7 +16,7 @@
                     })
                     .state('music.home',{
                         url:'/home',
-                        controller:'AppController',
+                        controller:'HomeController',
                         templateUrl:'templates/home.html'
                     })
                     .state('music.details',{

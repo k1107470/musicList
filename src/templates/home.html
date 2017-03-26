@@ -1,9 +1,39 @@
-<!--轮播图-->
-
-<!--轮播图结束-->
-
 <!--3个面板-->
-<section id="homepage" >
+<section id="homepage">
+
+    <!--轮播图-->
+    <div lunbo class="lunbo  hidden-xs"></div>
+    <script type="text/ng-template" id="lunbo.html">
+
+        <!--轮播图翻页-->
+        <a class="prev icon-left-open" >  </a>
+        <a class="next icon-right-open" > </a>
+        <ul class="container-fluid">
+
+            <li ng-class="{ishide:$index!=0}" ng-repeat="item in listArr" class=" col-sm-12">
+
+
+                <div ng-repeat="i in item" class="col-sm-3">
+                    <div class="albumpic col-sm-12" style="background-image: url({{i.albumpic_big}})">
+                        <span class="play icon-play" ng-click="playItem(i)"></span>
+                    </div>
+                    <div class="content">
+                        <p class="songname"><a ui-sref="music.details({songid:i.songid,albummid:i.albummid})">{{i.songname}}</a>
+                        </p>
+                        <p class="singer"><a ui-sref="music.tabs.search({page:1,keyword:i.singername})">{{i.singername}}</a></p>
+                    </div>
+
+                </div>
+            </li>
+
+        </ul>
+        <!--轮播图的控制器-->
+        <div class="ctrls">
+            <i class="active">0</i><i>1</i><i>2</i>
+        </div>
+    </script>
+
+
     <div class="page-header">
         <h4 class="text-info">榜单</h4>
     </div>
@@ -17,14 +47,16 @@
         <span></span>
     </div>
     <!--加载3组数据，需全部加载完毕才能展示-->
-    <div  class="container panels" ng-show="!!list_27.length&&!!list_26.length&&!!list_4.length">
+    <div class="container panels" ng-show="!!list_27.length&&!!list_26.length&&!!list_4.length">
         <ul class="list-group col-sm-4">
-            <li  class="list-group-item head">
+            <li class="list-group-item head">
                 新歌榜 <a ui-sref="music.tabs.list({id:27})" class="pull-right">更多</a>
             </li>
-            <li  class="list-group-item" ng-repeat="item in list_27" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
-                    <span class="signer" >{{item.singername}}</span>
+            <li class="list-group-item" ng-repeat="item in list_27"
+                ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})"
+                   ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
+                    <span class="signer">{{item.singername}}</span>
                 </a>
                 <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
@@ -32,12 +64,14 @@
         </ul>
 
         <ul class="list-group col-sm-4">
-            <li  class="list-group-item head">
+            <li class="list-group-item head">
                 热歌榜 <a ui-sref="music.tabs.list({id:26})" class="pull-right">更多</a>
             </li>
-            <li  class="list-group-item" ng-repeat="item in list_26" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
-                    <span class="signer" >{{item.singername}}</span>
+            <li class="list-group-item" ng-repeat="item in list_26"
+                ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1}}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})"
+                   ng-click="$event.stopPropagation()" title="{{ item.songname}}">{{ item.songname}}
+                    <span class="signer">{{item.singername}}</span>
                 </a>
                 <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
@@ -45,12 +79,14 @@
         </ul>
 
         <ul class="list-group col-sm-4">
-            <li  class="list-group-item head">
+            <li class="list-group-item head">
                 流行榜 <a ui-sref="music.tabs.list({id:4})" class="pull-right">更多</a>
             </li>
-            <li  class="list-group-item" ng-repeat="item in list_4" ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1 }}、
-                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})" ng-click="$event.stopPropagation()" title="{{ item.songname}}"> {{item.songname}}
-                    <span class="signer" >{{item.singername}}</span>
+            <li class="list-group-item" ng-repeat="item in list_4"
+                ng-click="clientWidth<768?playItem(item):0;$event.stopPropagation();">{{$index+1 }}、
+                <a ui-sref="music.details({songid:item.songid,albummid:item.albummid})"
+                   ng-click="$event.stopPropagation()" title="{{ item.songname}}"> {{item.songname}}
+                    <span class="signer">{{item.singername}}</span>
                 </a>
                 <span ng-if="clientWidth>768" class="play icon-play-circled" ng-click="playItem(item)"></span>
             </li>
