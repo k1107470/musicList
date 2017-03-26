@@ -10,21 +10,21 @@
 
 ##结构布局
 根目录---
-        |--dist  （最终展示的文件）
-        |--src    (开发阶段文件目录)
-            |--lib(第三方库)
-            |--script（js文件）
-            |--style（less文件）
-            |--images（图片）
-            |--index.html
-            |--font(字体图标)
-        |--node_modules(npm配置文件,开发依赖)
-        |--.bowercc(bower安装第三方库的位置)
-        |--.gitignore(git追踪忽略列表)
-        |--bower.json(bower配置)
-        |--gulpfile.js（gulp功能文件）
-        |--package.json(npm配置)
-        |--README.md
+&emsp;&emsp;|--dist  （最终展示的文件）
+&emsp;&emsp;|--src    (开发阶段文件目录)
+&emsp;&emsp;&emsp;&emsp;|--lib(第三方库)
+&emsp;&emsp;&emsp;&emsp;|--script（js文件）
+&emsp;&emsp;&emsp;&emsp;|--style（less文件）
+&emsp;&emsp;&emsp;&emsp;|--images（图片）
+&emsp;&emsp;&emsp;&emsp;|--index.html
+&emsp;&emsp;&emsp;&emsp;|--font(字体图标)
+&emsp;&emsp;|--node_modules(npm配置文件,开发依赖)
+&emsp;&emsp;|--.bowercc(bower安装第三方库的位置)
+&emsp;&emsp;|--.gitignore(git追踪忽略列表)
+&emsp;&emsp;|--bower.json(bower配置)
+&emsp;&emsp;|--gulpfile.js（gulp功能文件）
+&emsp;&emsp;|--package.json(npm配置)
+&emsp;&emsp;|--README.md
 
 ##使用方法    
     -环境配置，npm 安装，gulp设置为全局变量
