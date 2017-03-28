@@ -7,13 +7,16 @@
         .controller('AudioController',['$scope','$window','MainService',function($scope,$window,MainService){
             //console.log($document[0].documentElement.clientWidth);
             //获取屏幕的宽度
-            $scope.clientWidth = $window.document.documentElement.clientWidth||$window.innerWidth||$window.document.body.clientWidth;
+            $window.onresize = function(){
+                $scope.clientWidth = $window.document.documentElement.clientWidth||$window.innerWidth||$window.document.body.clientWidth;
+            };
             /*实例化一个播放器组件*/
              var player  = new Player({
                 container: 'playerContainer',
                 audio: 'myPlayer'
             });
             //console.log(player.save());
+            //缓存
             var storage = $window.localStorage;
             $scope.playList = storage['myPlayList'] ? JSON.parse(storage['myPlayList']) : [];
 
