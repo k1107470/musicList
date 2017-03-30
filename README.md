@@ -1,37 +1,26 @@
-#个人配置的gulp+browserSync预编译的模板
+qq音乐api数据接口实现的SPA
+=================
 
-##功能
+### 开发阶段使用
+* npm+bower进行包管理，package.json有预先写好脚本，只需要`npm  install`即可包安装，启动gulp的预编译功能
 
-1.less编译压缩
-2.js合并，压缩，混淆
-3.图片的复制
-4.html的压缩
-5.browserSync服务和监视==》该功能同步实现以上4个功能
-
-##结构布局
-根目录---
-&emsp;&emsp;|--dist  （最终展示的文件）
-&emsp;&emsp;|--src    (开发阶段文件目录)
-&emsp;&emsp;&emsp;&emsp;|--lib(第三方库)
-&emsp;&emsp;&emsp;&emsp;|--script（js文件）
-&emsp;&emsp;&emsp;&emsp;|--style（less文件）
-&emsp;&emsp;&emsp;&emsp;|--images（图片）
-&emsp;&emsp;&emsp;&emsp;|--index.html
-&emsp;&emsp;&emsp;&emsp;|--font(字体图标)
-&emsp;&emsp;|--node_modules(npm配置文件,开发依赖)
-&emsp;&emsp;|--.bowercc(bower安装第三方库的位置)
-&emsp;&emsp;|--.gitignore(git追踪忽略列表)
-&emsp;&emsp;|--bower.json(bower配置)
-&emsp;&emsp;|--gulpfile.js（gulp功能文件）
-&emsp;&emsp;|--package.json(npm配置)
-&emsp;&emsp;|--README.md
-
-##使用方法    
-    -环境配置，npm 安装，gulp设置为全局变量
-    ```
-    npm install
-    npm install gulp -g --save-dev
-    ```
-    -命令行中启动 gulp server服务
-    -进行开发
-        开发过程中每当保存文件（html，js，less，图片），browsersync-sevrer就会同步刷新到网页上
+### 内容介绍
+1. 框架使用：bootstrap+angular，angular使用ui-router进行路由操作
+2. 视图、控制器划分：
+    视图部分：
+    player.html 实例化h5 audio的一个自制播放器
+    home.html 主页
+    tabs.html 左边选项
+    songList.html 榜单列表
+    searchList.html 搜索列表
+    details.html 详细信息  
+     
+    控制器：
+    audio.js对应播放器插件的功能
+    config 常量配置
+    service.js 数据接口数据操作的方法
+    home.js 主页相关数据、行为暴露，轮播图指令
+    songList.js 榜单数据、行为暴露
+    searchList.js 搜索页面的数据、行为暴露
+    details.js 详细页面的数据、行为暴露 
+    route.js 总路由控制    
