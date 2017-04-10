@@ -63,26 +63,20 @@
         $q.all([MainService.getSong(27), MainService.getSong(26), MainService.getSong(5)])
             .then(
                 function (dataArr) {
-                    {
-                        console.log(dataArr);
+
+
+                    var flag = !!dataArr[0].data.showapi_res_body.pagebean.songlist && !!dataArr[1].data.showapi_res_body.pagebean.songlist && !!dataArr[2].data.showapi_res_body.pagebean.songlist;
+                    if (flag) {
                         $scope.list_27 = dataArr[0].data.showapi_res_body.pagebean.songlist.slice(0, 4);
-                        console.log($scope.list_27);
                         $scope.list_26 = dataArr[1].data.showapi_res_body.pagebean.songlist.slice(0, 4);
-                        console.log($scope.list_26);
 
                         $scope.list_5 = dataArr[2].data.showapi_res_body.pagebean.songlist.slice(0, 4);
-                        console.log($scope.list_5);
 
                         $scope.listArr = [];
                         $scope.listArr.push($scope.list_27);
                         $scope.listArr.push($scope.list_26);
                         $scope.listArr.push($scope.list_5);
                     }
-
-                    //var flag = !!dataArr[0].data.showapi_res_body.pagebean.songlist && !!dataArr[1].data.showapi_res_body.pagebean.songlist && !!dataArr[2].data.showapi_res_body.pagebean.songlist;
-                    //if (flag) {
-
-                    //}
 
                 }, function () {
                     console.log('获取失败');
