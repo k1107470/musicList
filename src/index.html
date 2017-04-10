@@ -27,16 +27,16 @@
         <div class="collapse-btn" ng-click="showOrHide()"><span></span><span></span><span></span></div>
     </div>
     <div class="lists container-fluid " ng-show="show_flag">
-        <a ui-sref="music.tabs.list({id:27})" class="col-md-1 col-sm-2 col-xs-3">新歌</a>
-        <a ui-sref="music.tabs.list({id:26})" class="col-md-1 col-sm-2 col-xs-3">热歌</a>
-        <a ui-sref="music.tabs.list({id:4})" class="col-md-1 col-sm-2 col-xs-3">流行</a>
-        <a ui-sref="music.tabs.list({id:5})" class="col-md-1 col-sm-2 col-xs-3">内地</a>
-        <a ui-sref="music.tabs.list({id:6})" class="col-md-1 col-sm-2 col-xs-3">港台</a>
-        <a ui-sref="music.tabs.list({id:3})" class="col-md-1 col-sm-2 col-xs-3">欧美</a>
-        <a ui-sref="music.tabs.list({id:17})" class="col-md-1 col-sm-2 col-xs-3">日本</a>
-        <a ui-sref="music.tabs.list({id:16})" class="col-md-1 col-sm-2 col-xs-3">韩国</a>
-        <a ui-sref="music.tabs.list({id:36})" class="col-md-1 col-sm-2 col-xs-4">k歌金曲</a>
-        <a ui-sref="music.tabs.list({id:28})" class="col-md-2 col-md-offset-0 col-sm-2 col-xs-4 col-xs-offset-2 col-sm-offset-2">网络歌曲</a>
+        <a ui-sref="music.tabs.list({id:27})" class="col-md-offset-2 col-md-1 col-sm-2 ">新歌</a>
+        <a ui-sref="music.tabs.list({id:26})" class="col-md-1 col-sm-2 ">热歌</a>
+        <!--<a ui-sref="music.tabs.list({id:4})" class="col-md-1 col-sm-2 col-xs-3">流行</a>-->
+        <a ui-sref="music.tabs.list({id:5})" class="col-md-1 col-sm-2 ">内地</a>
+        <a ui-sref="music.tabs.list({id:6})" class="col-md-1 col-sm-2 ">港台</a>
+        <a ui-sref="music.tabs.list({id:3})" class="col-md-1 col-sm-2 ">欧美</a>
+        <a ui-sref="music.tabs.list({id:17})" class="col-md-1 col-sm-2 ">日本</a>
+        <!--<a ui-sref="music.tabs.list({id:16})" class="col-md-1 col-sm-2 col-xs-3">韩国</a>-->
+        <a ui-sref="music.tabs.list({id:36})" class="col-md-1 col-sm-2 ">k歌金曲</a>
+        <a ui-sref="music.tabs.list({id:28})" class="col-md-2 col-md-offset-0 col-sm-2   col-sm-offset-2">网络歌曲</a>
     </div>
 </nav>
 <!--头部结束-->
@@ -55,8 +55,8 @@
 <script src="./lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 <!--自定义的模块和脚本，gulp压缩合并混淆后只引用index.js-->
-<script src="./script/index.js"></script>
-<!--<script src="./script/home.js"></script>
+<!--<script src="./script/index.js"></script>-->
+<script src="./script/home.js"></script>
 <script src="./script/route.js"></script>
 <script src="./script/songList.js"></script>
 <script src="./script/searchList.js"></script>
@@ -64,7 +64,7 @@
 <script src="./script/audio.js"></script>
 <script src="./script/service.js"></script>
 <script src="./script/config.js"></script>
-<script src="./script/player.js"></script>-->
+<script src="./script/player.js"></script>
 <script>
     (function (window) {
 
